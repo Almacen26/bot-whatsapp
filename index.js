@@ -1,24 +1,14 @@
-const { Client } = require('whatsapp-web.js');
-const qrcode = require('qrcode-terminal');
+const puppeteer = require('puppeteer');
 
-const client = new Client({
-    puppeteer: {
-        args: ['--no-sandbox', '--disable-setuid-sandbox']
-    }
-});
+(async () => {
+  const browser = await puppeteer.launch({
+    headless: true,
+    args: ['--no-sandbox', '--disable-setuid-sandbox']
+  });
 
-client.on('qr', qr => {
-    qrcode.generate(qr, { small: true });
-});
+  const page = await browser.newPage();
+  await page.goto('https://example.com');
+  console.log(await page.title());
 
-client.on('ready', () => {
-    console.log('✅ Bot conectado y listo.');
-});
-
-client.on('message', message => {
-    if (message.body.toLowerCase() === 'hola') {
-        message.reply('¡Hola! Soy tu bot 🤖');
-    }
-});
-
-client.initialize();
+  await browser.close();
+})();
