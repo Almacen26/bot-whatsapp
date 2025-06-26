@@ -1,14 +1,14 @@
-const puppeteer = require('puppeteer');
 
-(async () => {
-  const browser = await puppeteer.launch({
-    headless: true,
-    args: ['--no-sandbox', '--disable-setuid-sandbox']
+const venom = require('venom-bot');
+
+venom.create().then((client) => {
+  console.log('✅ Bot conectado correctamente');
+
+  client.onMessage((message) => {
+    if (message.body.toLowerCase() === 'hola') {
+      client.sendText(message.from, '¡Hola! Soy tu bot funcionando en Railway 🚀');
+    }
   });
-
-  const page = await browser.newPage();
-  await page.goto('https://example.com');
-  console.log(await page.title());
-
-  await browser.close();
-})();
+}).catch((err) => {
+  console.error('❌ Error al iniciar el bot:', err);
+});

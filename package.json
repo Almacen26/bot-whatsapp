@@ -1,25 +1,13 @@
+
 {
   "name": "bot-whatsapp",
   "version": "1.0.0",
-  "description": "",
+  "description": "Bot de WhatsApp con venom-bot para Railway",
   "main": "index.js",
   "scripts": {
     "start": "node index.js"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/Almacen26/bot-whatsapp.git"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/Almacen26/bot-whatsapp/issues"
-  },
-  "homepage": "https://github.com/Almacen26/bot-whatsapp#readme",
   "dependencies": {
-    "puppeteer": "^24.10.2",
-    "qrcode-terminal": "^0.12.0",
-    "whatsapp-web.js": "^1.30.0"
+    "venom-bot": "^5.0.0"
   }
 }
