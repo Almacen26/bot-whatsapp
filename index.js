@@ -1,13 +1,24 @@
-const venom = require('venom-bot');
+const { Client } = require('whatsapp-web.js');
+const qrcode = require('qrcode-terminal');
 
-venom.create().then((client) => {
-  console.log('✅ Bot conectado correctamente');
-
-  client.onMessage((message) => {
-    if (message.body.toLowerCase() === 'hola') {
-      client.sendText(message.from, '¡Hola! Soy tu bot funcionando en Railway 🚀');
-    }
-  });
-}).catch((err) => {
-  console.error('❌ Error al iniciar el bot:', err);
+const client = new Client({
+  puppeteer: {
+    args: ['--no-sandbox', '--disable-setuid-sandbox']
+  }
 });
+
+client.on('qr', qr => {
+  qrcode.generate(qr, { small: true });
+});
+
+client.on('ready', () => {
+  console.log('✅ Bot conectado y listo');
+});
+
+client.on('message', message => {
+  if (message.body === 'hola') {
+    message.reply('¡Hola! Soy tu bot en Railway 🚀');
+  }
+});
+
+client.initialize();
