@@ -7,17 +7,17 @@ const client = new Client({
   }
 });
 
-client.on('qr', qr => {
+client.on('qr', (qr) => {
   qrcode.generate(qr, { small: true });
 });
 
 client.on('ready', () => {
-  console.log('✅ Bot conectado y listo');
+  console.log('✅ Bot conectado y listo.');
 });
 
-client.on('message', msg => {
-  if (msg.body.toLowerCase() === 'hola') {
-    msg.reply('¡Hola! Soy tu bot en Railway 🚀');
+client.on('message', (message) => {
+  if (message.body.toLowerCase() === 'hola') {
+    message.reply('¡Hola! Soy tu bot 🤖');
   }
 });
 
