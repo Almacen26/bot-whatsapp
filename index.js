@@ -15,9 +15,9 @@ client.on('ready', () => {
   console.log('✅ Bot conectado y listo');
 });
 
-client.on('message', message => {
-  if (message.body === 'hola') {
-    message.reply('¡Hola! Soy tu bot en Railway 🚀');
+client.on('message', msg => {
+  if (msg.body.toLowerCase() === 'hola') {
+    msg.reply('¡Hola! Soy tu bot en Railway 🚀');
   }
 });
 
